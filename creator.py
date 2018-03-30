@@ -1,5 +1,4 @@
-from pattern.generator import EmojiGenerator
-from pattern import settings
+from pattern.generator import SequenceGenerator
 
 if __name__ == '__main__':
     # TODO: get these options as input
@@ -7,18 +6,16 @@ if __name__ == '__main__':
     pattern_option = 'letter'
     style = 1
     size = 'medium'
+    direction = 'vertical'
+    framed = True
     print_file = True
-    result = ""
+    result_file_name = 'result/' + "_".join([pattern, pattern_option, str(style), size, direction, str(framed)])
 
-    if pattern_option == 'letter':
-        for ch in pattern:
-            result += EmojiGenerator(pattern=ch, pattern_option=pattern_option, pattern_style=style, size=size) \
-                .create(up=True, left=True, right=True)
-        result += EmojiGenerator(pattern=pattern, pattern_option=pattern_option, pattern_style=style, size=size)\
-            .horizontal_line(settings.size[size]['width'] + 2)
+    result = SequenceGenerator(sequence=pattern, option=pattern_option, style=style,
+                               size=size, direction=direction, framed=framed).generate()
 
     print result
 
     if print_file:
-        with open('result/' + pattern, 'w') as __pattern_file:
+        with open(result_file_name, 'w') as __pattern_file:
             __pattern_file.write(result)

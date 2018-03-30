@@ -16,12 +16,12 @@ emojis = [
     }
 ]
 size = {
-    'small': {
+    'SMALL': {
         'name': 'small',
         'width': 3,
         'height': 5
     },
-    'medium': {
+    'MEDIUM': {
         'name': 'medium',
         'width': 5,
         'height': 7
